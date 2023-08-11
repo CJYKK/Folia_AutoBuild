@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "**" ]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,5 +27,12 @@ jobs:
         run: git config --global user.email "actions@github.com" && git config --global user.name "Github Actions"
       - name: Apply Patches
         run: ./gradlew applyPatches
-      - name: Build
-        run: ./gradlew build
+      - name: Create Mojmap Paperclip Jar
+        run: ./gradlew createMojmapPaperclipJar
+      - name: Create Reobf Bundler
+        run: ./gradlew createReobfBundler
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Folia
+          path: build/libs/*
