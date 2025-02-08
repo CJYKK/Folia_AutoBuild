@@ -32,7 +32,7 @@ jobs:
       - name: Create Reobf Bundler
         run: ./gradlew createReobfBundler
       - name: Upload Build Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Folia
           path: build/libs/*
